@@ -64,11 +64,55 @@ extension PixelColor {
         return pixel
     }
     
-    /// Creates and returns a pixel color object converted to grayscale. Similar with desaturated.
+    /// A pixel color object converted to grayscale. Similar with desaturated.
     /// - Parameter mode: Defines the mode (i.e color space) used for grayscaling.
     /// - Returns: A grayscale pixel color.
-    public func grayscaled(mode: GrayscalingMode = .lightness) -> PixelColor {
-        var pixel = self
+    public func grayscaled(mode: GrayedMode = .weighted) -> PixelColor {
+        let lightness = mode.lightness(pixel: self)
+        let (r, g, b) = PixelColor.HSL.toRGB(hue: 0, saturation: 0, lightness: lightness)
+        let pixel = PixelColor.init(r: r, g: g, b: b, a: CGFloat(alpha))
         return pixel
+    }
+    
+    /// A pixel color object with the saturation increased by the given amount.
+    /// - Parameter amount: CGFloat between 0.0 and 1.0. Default value is 0.2.
+    /// - Returns: A pixel color more saturated.
+    public func saturated(amount: CGFloat = 0.2) -> PixelColor {
+        HSL.saturation.adjusted(pixel: self, amount: amount)
+    }
+    
+    /// A pixel color object with the saturation decreased by the given amount.
+    /// - Parameter amount: CGFloat between 0.0 and 1.0. Default value is 0.2.
+    /// - Returns: A pixel color less saturated.
+    public func desaturated(amount: CGFloat = 0.2) -> PixelColor {
+        saturated(amount: -amount)
+    }
+    
+    /// A pixel color object with the lightness increased by the given amount.
+    /// - Parameter amount: CGFloat between 0.0 and 1.0. Default value is 0.2.
+    /// - Returns: A lighter pixel color.
+    public func lighter(amount: CGFloat = 0.2) -> PixelColor {
+        HSL.lightness.adjusted(pixel: self, amount: amount)
+    }
+    
+    /// A pixel color object with the lightness decreased by the given amount.
+    /// - Parameter amount: CGFloat between 0.0 and 1.0. Default value is 0.2.
+    /// - Returns: A darker pixel color.
+    public func darkened(amount: CGFloat = 0.2) -> PixelColor {
+        lighter(amount: -amount)
+    }
+    
+    /// A pixel color object with the hue rotated along the color wheel by the given amount.
+    /// - Parameter amount: A float representing the number of degrees as ratio (usually between -360.0 degree and 360.0 degree).
+    /// - Returns: A pixel color object with the hue changed.
+    public func adjustedHue(amount: CGFloat) -> PixelColor {
+        HSL.hue.adjusted(pixel: self, amount: amount)
+    }
+    
+    /// A complement of the pixel color object.
+    /// This is identical to adjustedHue 180.
+    /// - Returns: The complement pixel color.
+    public func complemented() -> PixelColor {
+        return adjustedHue(amount: 180.0)
     }
 }

@@ -12,6 +12,9 @@ import SwiftUI
 /// Pixel Color contains 4  channels, from 0 to 1.
 public struct PixelColor {
     
+    /// red, green, blue
+    public typealias RGB = (red: CGFloat, green: CGFloat, blue: CGFloat)
+    
     public static let zero = PixelColor(red: 0, green: 0, blue: 0, alpha: 0)
     public static let one  = PixelColor(red: 1, green: 1, blue: 1, alpha: 1)
     
@@ -22,10 +25,10 @@ public struct PixelColor {
     
     /// Initializes and returns a pixel color object using the specified opacity and RGBA component values.
     /// - Parameters:
-    ///   - red: The red component of the color object, specified as a value from 0.0 to 1.0.
-    ///   - green: The green component of the color object, specified as a value from 0.0 to 1.0.
-    ///   - blue: The blue component of the color object, specified as a value from 0.0 to 1.0.
-    ///   - alpha: The opacity value of the color object, specified as a value from 0.0 to 1.0. Default to 1.0.
+    ///   - red: The red component of the pixel color object, specified as a value from 0.0 to 1.0.
+    ///   - green: The green component of the pixel color object, specified as a value from 0.0 to 1.0.
+    ///   - blue: The blue component of the pixel color object, specified as a value from 0.0 to 1.0.
+    ///   - alpha: The opacity value of the pixel color object, specified as a value from 0.0 to 1.0. Default to 1.0.
     public init(red: Float, green: Float, blue: Float, alpha: Float = 1.0) {
         self.red = red
         self.green = green
@@ -57,6 +60,12 @@ public struct PixelColor {
         self.init(r: r, g: g, b: b, a: a)
     }
     
+    @available(iOS 14.0, tvOS 14.0, watchOS 7.0, macOS 11.0, *)
+    public init(color: Color) {
+        let uicolor = CrossPlatformColor.init(color)
+        self.init(color: uicolor)
+    }
+    
     /// Initializes and returns a pixel color object using the specified opacity and HSB component values.
     /// - Parameters:
     ///   - hue: The hue component of the color object, specified as a value from 0.0 to 360.0 degree.
@@ -64,7 +73,7 @@ public struct PixelColor {
     ///   - brightness: The brightness component of the color object, specified as a value from 0.0 to 1.0.
     ///   - alpha: The opacity value of the color object, specified as a value from 0.0 to 1.0. Default to 1.0.
     public init(hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat = 1.0) {
-        let (r, g, b) = PixelColor.Converting.HSB2RGB(hue: hue, saturation: saturation, brightness: brightness)
+        let (r, g, b) = PixelColor.HSB.toRGB(hue: hue, saturation: saturation, brightness: brightness)
         self.init(r: r, g: g, b: b, a: alpha)
     }
     
@@ -75,7 +84,7 @@ public struct PixelColor {
     ///   - lightness: The lightness component of the color object, specified as a value between 0.0 and 1.0.
     ///   - alpha: The opacity value of the color object, specified as a value from 0.0 to 1.0. Default to 1.0.
     public init(hue: CGFloat, saturation: CGFloat, lightness: CGFloat, alpha: CGFloat = 1.0) {
-        let (r, g, b) = PixelColor.Converting.HSL2RGB(hue: hue, saturation: saturation, lightness: lightness)
+        let (r, g, b) = PixelColor.HSL.toRGB(hue: hue, saturation: saturation, lightness: lightness)
         self.init(r: r, g: g, b: b, a: alpha)
     }
     
@@ -90,10 +99,40 @@ public struct PixelColor {
     }
     
     /// Creates a pixel color from an hex string, e.g. "#D6A5A4".
-    /// Support hex string `#RGB`,`RGB`,`#ARGB`,`ARGB`,`#RRGGBB`,`RRGGBB`,`#AARRGGBB`,`AARRGGBB`.
+    /// Support hex string `#RGB`,`RGB`,`#RGBA`,`RGBA`,`#RRGGBB`,`RRGGBB`,`#RRGGBBAA`,`RRGGBBAA`.
     /// - Parameter hex: A hexa-decimal color string representation.
     public init(hex: String) {
-        let (r, g, b, a) = PixelColor.Converting.hexString2RGBA(hex: hex)
+        let input = hex.replacingOccurrences(of: "#", with: "").uppercased()
+        var a: CGFloat = 1.0, r: CGFloat = 0.0, b: CGFloat = 0.0, g: CGFloat = 0.0
+        func colorComponent(from string: String, start: Int, length: Int) -> CGFloat {
+            let substring = (string as NSString).substring(with: NSRange(location: start, length: length))
+            let fullHex = length == 2 ? substring : "\(substring)\(substring)"
+            var hexComponent: UInt64 = 0
+            Scanner(string: fullHex).scanHexInt64(&hexComponent)
+            return CGFloat(Double(hexComponent) / 255.0)
+        }
+        switch (input.count) {
+        case 3 /* #RGB */:
+            r = colorComponent(from: input, start: 0, length: 1)
+            g = colorComponent(from: input, start: 1, length: 1)
+            b = colorComponent(from: input, start: 2, length: 1)
+        case 4 /* #RGBA */:
+            r = colorComponent(from: input, start: 0, length: 1)
+            g = colorComponent(from: input, start: 1, length: 1)
+            b = colorComponent(from: input, start: 2, length: 1)
+            a = colorComponent(from: input, start: 3, length: 1)
+        case 6 /* #RRGGBB */:
+            r = colorComponent(from: input, start: 0, length: 2)
+            g = colorComponent(from: input, start: 2, length: 2)
+            b = colorComponent(from: input, start: 4, length: 2)
+        case 8 /* #RRGGBBAA */:
+            r = colorComponent(from: input, start: 0, length: 2)
+            g = colorComponent(from: input, start: 2, length: 2)
+            b = colorComponent(from: input, start: 4, length: 2)
+            a = colorComponent(from: input, start: 6, length: 2)
+        default:
+            break
+        }
         self.init(r: r, g: g, b: b, a: a)
     }
 }
@@ -116,21 +155,37 @@ extension PixelColor {
     
     @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
     public func toColor() -> Color {
-        Color(red: Double(red), green: Double(green), blue: Double(blue), opacity: Double(alpha))
+        Color(.sRGB, red: Double(red), green: Double(green), blue: Double(blue), opacity: Double(alpha))
+    }
+    
+    /// Returns the color representation as hexadecimal string. `#RRGGBB`
+    public var hex: String {
+        toHex()
     }
     
     /// Returns the color representation as hexadecimal string.
     /// - Parameter alphaChannel: Does it include transparent channels.
-    /// - Returns: return hexadecimal string as `#AARRGGBB` or `#RRGGBB`
+    /// - Returns: return hexadecimal string as `#RRGGBBAA` or `#RRGGBB`
     public func toHex(contain alphaChannel: Bool = false) -> String {
-        func hexa(_ v: Float) -> String {
+        let hexa = { (v: Float) -> String in
             let value = UInt8(v * 255)
             return (value < 16 ? "0" : "") + String(value, radix: 16, uppercase: true)
         }
         if alphaChannel {
-            return "#" + hexa(alpha) + hexa(red) + hexa(green) + hexa(blue)
+            return "#" + hexa(red) + hexa(green) + hexa(blue) + hexa(alpha)
         } else {
             return "#" + hexa(red) + hexa(green) + hexa(blue)
         }
+    }
+    
+    /// Return a array with [red, green, blue, alpha].
+    public var components: [CGFloat] {
+        [red, green, blue, alpha].map { CGFloat($0) }
+    }
+    
+    /// Returns the RGBA (red, green, blue, alpha) components.
+    /// - Returns: return a array with [red, green, blue, alpha].
+    public func toRGBA() -> [Float] {
+        [red, green, blue, alpha]
     }
 }

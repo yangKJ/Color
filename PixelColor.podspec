@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'PixelColor'
   s.version          = '0.0.1'
-  s.summary          = 'About image and video add filter for metal.'
+  s.summary          = 'Pixel color extension with Swift and SwiftUI.'
   
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?

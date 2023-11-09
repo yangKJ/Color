@@ -26,7 +26,7 @@ extension CrossPlatformColor: PixelColorCompatible {
     }
     
     /// Creates a color from an hex string, e.g. "#D6A5A4".
-    /// Support hex string `#RGB`,`RGB`,`#ARGB`,`ARGB`,`#RRGGBB`,`RRGGBB`,`#AARRGGBB`,`AARRGGBB`.
+    /// Support hex string `#RGB`,`RGB`,`#RGBA`,`RGBA`,`#RRGGBB`,`RRGGBB`,`#RRGGBBAA`,`RRGGBBAA`.
     /// - Parameter hex: A hexa-decimal color string representation.
     public convenience init(hex: String) {
         let components = PixelColor(hex: hex).components
@@ -54,7 +54,7 @@ extension Color: PixelColorCompatible {
     }
     
     /// Creates a color from an hex string, e.g. "#D6A5A4".
-    /// Support hex string `#RGB`,`RGB`,`#ARGB`,`ARGB`,`#RRGGBB`,`RRGGBB`,`#AARRGGBB`,`AARRGGBB`.
+    /// Support hex string `#RGB`,`RGB`,`#RGBA`,`RGBA`,`#RRGGBB`,`RRGGBB`,`#RRGGBBAA`,`RRGGBBAA`.
     /// - Parameter hex: A hexa-decimal color string representation.
     public init(hex: String) {
         let components = PixelColor(hex: hex).components
@@ -62,6 +62,7 @@ extension Color: PixelColorCompatible {
     }
 }
 
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
 extension PixelColorWrapper where Base == Color {
     
     /// Convert pixel color value

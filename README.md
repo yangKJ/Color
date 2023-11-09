@@ -1,8 +1,10 @@
 # PixelColor
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-brightgreen.svg?style=flat&colorA=28a745&&colorB=4E4E4E)](https://github.com/yangKJ/PixelColor)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Harbeth.svg?style=flat&label=Harbeth&colorA=28a745&&colorB=4E4E4E)](https://cocoapods.org/pods/PixelColor)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/PixelColor.svg?style=flat&label=PixelColor&colorA=28a745&&colorB=4E4E4E)](https://cocoapods.org/pods/PixelColor)
 ![Platform](https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20watchOS-4E4E4E.svg?colorA=28a745)
+
+🎨. [**PixelColor**](https://github.com/yangKJ/PixelColor) is a pixel color extension with Swift and SwiftUI. 
 
 ## Requirements
 
@@ -27,7 +29,7 @@ pod 'PixelColor'
 
 > Xcode 11+ is required to build [PixelColor](https://github.com/yangKJ/PixelColor) using Swift Package Manager.
 
-To integrate Harbeth into your Xcode project using Swift Package Manager, add it to the dependencies value of your `Package.swift`:
+To integrate PixelColor into your Xcode project using Swift Package Manager, add it to the dependencies value of your `Package.swift`:
 
 ```swift
 dependencies: [
@@ -58,13 +60,13 @@ Buy me a coffee or support me on [GitHub](https://github.com/sponsors/yangKJ?fre
 Alipay or WeChat. Thanks.
 
 <p align="left">
-<img src="https://raw.githubusercontent.com/yangKJ/Harbeth/master/Screenshot/WechatIMG1.jpg" width=30% hspace="1px">
-<img src="https://raw.githubusercontent.com/yangKJ/Harbeth/master/Screenshot/WechatIMG2.jpg" width=30% hspace="15px">
+<img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/WechatIMG1.jpg" width=30% hspace="1px">
+<img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/WechatIMG2.jpg" width=30% hspace="15px">
 </p>
 
 -----
 
 ### License
-Harbeth is available under the [MIT](LICENSE) license. See the [LICENSE](LICENSE) file for more info.
+PixelColor is available under the [MIT](LICENSE) license. See the [LICENSE](LICENSE) file for more info.
 
 -----

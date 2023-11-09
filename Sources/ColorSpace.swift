@@ -17,8 +17,13 @@ extension PixelColor {
         /// HSI color space is a human visual system that describes color by hue, saturation or Chroma and intensity.
         /// H: Indicates the phase angle of the color. Red, green and blue are 120 degrees apart respectively, complementary colors are 180 degrees apart.
         /// S: Represents the ratio between the purity of the selected color and the maximum purity of the color. A range of `0` to `1`.
-        /// I: Indicates the brightness of the color, a range of `0` to `1`.
+        /// I: Indicates the lightness of the color, a range of `0` to `1`.
         case hsl
+        /// HSB color space is a human visual system that describes color by hue, saturation or Chroma and intensity.
+        /// H: Indicates the phase angle of the color. Red, green and blue are 120 degrees apart respectively, complementary colors are 180 degrees apart.
+        /// S: Represents the ratio between the purity of the selected color and the maximum purity of the color. A range of `0` to `1`.
+        /// B: Indicates the brightness of the color, a range of `0` to `1`.
+        case hsb
         /// CMYK is a color mode that relies on reflective light.
         /// How do we read the content of newspapers?
         /// It is the sunlight or light that shines on the newspaper and then reflects it into our eyes to see the content.
@@ -26,6 +31,6 @@ extension PixelColor {
         /// As long as the image displayed on the screen is represented by RGB mode.
         /// As long as the image is seen in the print, it is represented by CMYK mode.
         /// Most devices that deposit color pigments on paper, such as color printers and copiers, require the input of CMY data and the conversion of RGB to CMY internally.
-        case cmyk
+        //case cmyk
     }
 }
