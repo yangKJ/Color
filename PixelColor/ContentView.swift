@@ -69,7 +69,11 @@ struct ItemView: View {
     var pixels: [PixelColor]
     
     var body: some View {
+        #if os(macOS)
+        let width = CGFloat(NSScreen.main!.frame.size.width - 1500) / 6
+        #else
         let width = (UIScreen.main.bounds.size.width - 30) / 6
+        #endif
         HStack {
             ForEach(Array(pixels.enumerated()), id: \.offset) { index, pixel in
                 Spacer().frame(width: 15)
