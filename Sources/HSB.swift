@@ -80,6 +80,14 @@ extension PixelColor.HSB {
 
 extension PixelColor {
     /// Returns the HSB (hue, saturation, brightness) components.
+    /// Notes that hue values are between 0 to 360, saturation values are between 0 to 1 and brightness values are between 0 to 1.
+    /// - Returns: return  hue, saturation, brightness.
+    public var toHSB: HSBType {
+        let hsb = toHSBComponents()
+        return (hsb[0], hsb[1], hsb[2])
+    }
+    /// Returns the HSB (hue, saturation, brightness) components.
+    /// Notes that hue values are between 0 to 360, saturation values are between 0 to 1 and brightness values are between 0 to 1.
     /// - Returns: return a array with [hue, saturation, brightness].
     public func toHSBComponents() -> [CGFloat] {
         let maximum = max(red, max(green, blue))

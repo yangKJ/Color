@@ -32,5 +32,10 @@ extension PixelColor {
         /// As long as the image is seen in the print, it is represented by CMYK mode.
         /// Most devices that deposit color pigments on paper, such as color printers and copiers, require the input of CMY data and the conversion of RGB to CMY internally.
         //case cmyk
+        /// CIE Lab Color Space
+        /// L: The lightness, specified as a value from 0 to 100.0.
+        /// a: The red-green axis, specified as a value from -128.0 to 127.0.
+        /// b: The yellow-blue axis, specified as a value from -128.0 to 127.0.
+        case lab
     }
 }

@@ -42,9 +42,9 @@ struct ContentView: View {
             ])
             
 //            ItemView(titles: ["MixHSL", "MixRGB", "MixHSB"], pixels: [
-//                PixelColor.init(color: selectedColor).mixed(with: .hsl, other: .one),
-//                PixelColor.init(color: selectedColor).mixed(with: .rgb, other: .one),
-//                PixelColor.init(color: selectedColor).mixed(with: .hsb, other: .one),
+//                PixelColor.init(color: selectedColor).mixed(in: .hsl, other: .one),
+//                PixelColor.init(color: selectedColor).mixed(in: .rgb, other: .one),
+//                PixelColor.init(color: selectedColor).mixed(in: .hsb, other: .one),
 //            ])
 //
             ItemView(titles: ["MixBlue", "MixGreen", "MixRed"], pixels: [

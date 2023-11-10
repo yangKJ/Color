@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		874A58332AFDC26C002EB652 /* XYZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874A58322AFDC26C002EB652 /* XYZ.swift */; };
+		874A58352AFDC706002EB652 /* Lab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874A58342AFDC706002EB652 /* Lab.swift */; };
 		878CDC5B2AFCC35600031D5D /* Mixing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CDC5A2AFCC35600031D5D /* Mixing.swift */; };
 		8796A0AC2AF896FC0095C2D5 /* GrayedMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8796A0AB2AF896FC0095C2D5 /* GrayedMode.swift */; };
 		8796A0AE2AF8D6A40095C2D5 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8796A0AD2AF8D6A40095C2D5 /* Driver.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		874A58322AFDC26C002EB652 /* XYZ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XYZ.swift; sourceTree = "<group>"; };
+		874A58342AFDC706002EB652 /* Lab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lab.swift; sourceTree = "<group>"; };
 		878CDC5A2AFCC35600031D5D /* Mixing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixing.swift; sourceTree = "<group>"; };
 		8796A0AB2AF896FC0095C2D5 /* GrayedMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayedMode.swift; sourceTree = "<group>"; };
 		8796A0AD2AF8D6A40095C2D5 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
@@ -179,9 +183,11 @@
 				8796A0AB2AF896FC0095C2D5 /* GrayedMode.swift */,
 				87C035AF2AFB306F00F2EEFB /* HSB.swift */,
 				87C035B02AFB307000F2EEFB /* HSL.swift */,
+				874A58342AFDC706002EB652 /* Lab.swift */,
 				878CDC5A2AFCC35600031D5D /* Mixing.swift */,
 				87D3BADD2AF8811B00609D4B /* PixelColor.swift */,
 				87D3BAE62AF882EE00609D4B /* Wrapper.swift */,
+				874A58322AFDC26C002EB652 /* XYZ.swift */,
 				87D3BADC2AF8811B00609D4B /* ZeroOneRange.swift */,
 			);
 			path = Sources;
@@ -322,6 +328,7 @@
 				8796A0AE2AF8D6A40095C2D5 /* Driver.swift in Sources */,
 				87D3BAE12AF8811B00609D4B /* ZeroOneRange.swift in Sources */,
 				87D3BAE72AF882EE00609D4B /* Wrapper.swift in Sources */,
+				874A58352AFDC706002EB652 /* Lab.swift in Sources */,
 				8796A0B02AF8D7210095C2D5 /* ContrastDisplayContext.swift in Sources */,
 				8796A0AC2AF896FC0095C2D5 /* GrayedMode.swift in Sources */,
 				87D3BAE02AF8811B00609D4B /* ColorSpace.swift in Sources */,
@@ -329,6 +336,7 @@
 				87D3BADE2AF8811B00609D4B /* Color+Ext.swift in Sources */,
 				87C035B22AFB307000F2EEFB /* HSL.swift in Sources */,
 				87D3BAE52AF8824E00609D4B /* CGImage+Ext.swift in Sources */,
+				874A58332AFDC26C002EB652 /* XYZ.swift in Sources */,
 				87C035B12AFB307000F2EEFB /* HSB.swift in Sources */,
 				878CDC5B2AFCC35600031D5D /* Mixing.swift in Sources */,
 				87D3BAE22AF8811B00609D4B /* PixelColor.swift in Sources */,

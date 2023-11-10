@@ -73,8 +73,8 @@ public struct PixelColor {
     ///   - brightness: The brightness component of the color object, specified as a value from 0.0 to 1.0.
     ///   - alpha: The opacity value of the color object, specified as a value from 0.0 to 1.0. Default to 1.0.
     public init(hue: CGFloat, saturation: CGFloat, brightness: CGFloat, alpha: CGFloat = 1.0) {
-        let (r, g, b) = PixelColor.HSB.toRGB(hue: hue, saturation: saturation, brightness: brightness)
-        self.init(r: r, g: g, b: b, a: alpha)
+        let rgb = PixelColor.HSB.toRGB(hue: hue, saturation: saturation, brightness: brightness)
+        self.init(r: rgb.red, g: rgb.green, b: rgb.blue, a: alpha)
     }
     
     /// Initializes and returns a pixel color object using the specified opacity and HSL component values.
@@ -84,8 +84,30 @@ public struct PixelColor {
     ///   - lightness: The lightness component of the color object, specified as a value between 0.0 and 1.0.
     ///   - alpha: The opacity value of the color object, specified as a value from 0.0 to 1.0. Default to 1.0.
     public init(hue: CGFloat, saturation: CGFloat, lightness: CGFloat, alpha: CGFloat = 1.0) {
-        let (r, g, b) = PixelColor.HSL.toRGB(hue: hue, saturation: saturation, lightness: lightness)
-        self.init(r: r, g: g, b: b, a: alpha)
+        let rgb = PixelColor.HSL.toRGB(hue: hue, saturation: saturation, lightness: lightness)
+        self.init(r: rgb.red, g: rgb.green, b: rgb.blue, a: alpha)
+    }
+    
+    /// Initializes and returns a pixel color object using CIE XYZ color space component values with an observer at 2° and a D65 illuminant.
+    /// - Parameters:
+    ///   - X: The mix of cone response curves, specified as a value from 0 to 95.05.
+    ///   - Y: The luminance, specified as a value from 0 to 100.0.
+    ///   - Z: The quasi-equal to blue stimulation, specified as a value from 0 to 108.9.
+    ///   - alpha: The opacity value of the color object, specified as a value from 0.0 to 1.0. Default to 1.0.
+    public init(X: CGFloat, Y: CGFloat, Z: CGFloat, alpha: CGFloat = 1.0) {
+        let rgb = PixelColor.XYZ.toRGB(X: X, Y: Y, Z: Z)
+        self.init(r: rgb.red, g: rgb.green, b: rgb.blue, a: alpha)
+    }
+    
+    /// Initializes and returns a pixel color object using CIE XYZ color space component values with an observer at 2° and a D65 illuminant.
+    /// - Parameters:
+    ///   - L: The lightness, specified as a value from 0 to 100.0.
+    ///   - a: The red-green axis, specified as a value from -128.0 to 127.0.
+    ///   - b: The yellow-blue axis, specified as a value from -128.0 to 127.0.
+    ///   - alpha: The opacity value of the color object, specified as a value from 0.0 to 1.0. Default to 1.0.
+    public init(L: CGFloat, a: CGFloat, b: CGFloat, alpha: CGFloat = 1.0) {
+        let rgb = PixelColor.Lab.toRGB(L: L, a: a, b: b)
+        self.init(r: rgb.red, g: rgb.green, b: rgb.blue, a: alpha)
     }
     
     /// Creates a pixel color from an hex integer, e.g. 0xD6A5A4.

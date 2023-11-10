@@ -16,7 +16,7 @@ extension PixelColor {
     ///   - weight: The weight specifies the amount of the given color object (between 0 and 1).
     ///   - pixelColor: A pixel color object to mix with the receiver.
     /// - Returns: A pixel color object corresponding to the two colors object mixed together.
-    public func mixed(with colorSpace: ColorSpace = .rgb, weight: CGFloat = 0.5, other pixelColor: PixelColor) -> PixelColor {
+    public func mixed(in colorSpace: ColorSpace = .rgb, weight: CGFloat = 0.5, other pixelColor: PixelColor) -> PixelColor {
         let weight = max(min(weight, 1.0), 0.0)
         switch colorSpace {
         case .rgb:
@@ -43,6 +43,14 @@ extension PixelColor {
             let b = c1[2] + (weight * (c2[2] - c1[2]))
             let a = CGFloat(alpha) + (weight * CGFloat(pixelColor.alpha - alpha))
             return PixelColor.init(hue: h, saturation: s, brightness: b, alpha: a)
+        case .lab:
+            let c1 = toLabComponents()
+            let c2 = pixelColor.toLabComponents()
+            let L = c1[0] + (weight * (c2[0] - c1[0]))
+            let a = c1[1] + (weight * (c2[1] - c1[1]))
+            let b = c1[2] + (weight * (c2[2] - c1[2]))
+            let a_ = CGFloat(alpha) + (weight * CGFloat(pixelColor.alpha - alpha))
+            return PixelColor.init(L: L, a: a, b: b, alpha: a_)
         }
     }
     

@@ -88,6 +88,15 @@ extension PixelColor.HSL {
 
 extension PixelColor {
     /// Returns the HSL (hue, saturation, lightness) components.
+    /// Notes that hue values are between 0 to 360, saturation values are between 0 to 1 and lightness values are between 0 to 1.
+    /// - Returns: return hue, saturation, lightness.
+    public var toHSL: HSLType {
+        let hsl = toHSLComponents()
+        return (hsl[0], hsl[1], hsl[2])
+    }
+    
+    /// Returns the HSL (hue, saturation, lightness) components.
+    /// Notes that hue values are between 0 to 360, saturation values are between 0 to 1 and lightness values are between 0 to 1.
     /// - Returns: return a array with [hue, saturation, lightness].
     public func toHSLComponents() -> [CGFloat] {
         let maximum = max(red, max(green, blue))
