@@ -4,12 +4,12 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/PixelColor.svg?style=flat&label=PixelColor&colorA=28a745&&colorB=4E4E4E)](https://cocoapods.org/pods/PixelColor)
 ![Platform](https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20watchOS-4E4E4E.svg?colorA=28a745)
 
-<p align="center">
+🎨. [**PixelColor**](https://github.com/yangKJ/PixelColor) is a pixel color extension with Swift and SwiftUI.
+
+<p align="left">
 <img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/Test.png" width=30% hspace="1px">
 <img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/Test2.png" width=30% hspace="15px">
-</p>
-
-🎨. [**PixelColor**](https://github.com/yangKJ/PixelColor) is a pixel color extension with Swift and SwiftUI. 
+</p> 
 
 ## Requirements
 
