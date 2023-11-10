@@ -54,7 +54,7 @@ let color = Color.init(hex: "#3498DB")
 These two create a new pixel color by adjusting the lightness of the receiver.
 
 <p align="left">
-  <img src="http://yannickloriot.com/resources/dynamiccolor-darkenlighten.png" alt="lighten and darken color" width="280"/>
+  <img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/darkenlighten.png" alt="lighten and darken color" width="280"/>
 </p>
 
 ```swift
@@ -76,7 +76,7 @@ These will adjust the saturation of the pixel color object, much like `darkened`
 Again, you need to use a value between 0 and 1.
 
 <p align="left">
-  <img src="http://yannickloriot.com/resources/dynamiccolor-saturateddesaturatedgrayscale.png" alt="saturate, desaturate and grayscale color" width="373"/>
+  <img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/saturateddesaturatedgrayscale.png" alt="saturate, desaturate and grayscale color" width="373"/>
 </p>
 
 ```swift
@@ -100,7 +100,7 @@ let grayscaled = pixel.grayscaled()
 These adjust the hue value of the color in the same way like the others do. Again, it takes a value between 0 and 1 to update the value.
 
 <p align="left">
-  <img src="http://yannickloriot.com/resources/dynamiccolor-adjustedhuecomplement.png" alt="ajusted-hue and complement color" width="280"/>
+  <img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/adjustedhuecomplement.png" alt="ajusted-hue and complement color" width="280"/>
 </p>
 
 ```swift
@@ -121,7 +121,7 @@ A tint is the mixture of a pixel color with white and a shade is the mixture of 
 Again, it takes a value between 0 and 1 to update the value.
 
 <p align="left">
-<img src="http://yannickloriot.com/resources/dynamiccolor-tintshadecolor.png" alt="tint and shade color" width="280"/>
+<img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/tintshadecolor.png" alt="tint and shade color" width="280"/>
 </p>
 
 ```swift
@@ -141,7 +141,7 @@ let shaded = pixel.shaded()
 This can invert the pixel color object. The red, green, and blue values are inverted, while the opacity is left alone.
 
 <p align="left">
-  <img src="http://yannickloriot.com/resources/dynamiccolor-invert.png" alt="invert color" width="187"/>
+  <img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/invert.png" alt="invert color" width="187"/>
 </p>
 
 ```swift
@@ -157,7 +157,7 @@ This can mix a given pixel color with the receiver.
 It takes the average of each of the RGB components, optionally weighted by the given percentage (value between 0 and 1).
 
 <p align="left">
-<img src="http://yannickloriot.com/resources/dynamiccolor-mixcolor.png" alt="mix color" width="373"/>
+<img src="https://raw.githubusercontent.com/yangKJ/PixelColor/master/Screenshot/mixcolor.png" alt="mix color" width="373"/>
 </p>
 
 ```swift
